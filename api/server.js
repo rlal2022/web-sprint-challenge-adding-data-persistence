@@ -18,8 +18,8 @@ server.use("*", (req, res, next) => {
   res.json({ api: "API is running!" });
 });
 
-server.use((err, req, res, next) => {
-  res.status(500).json({ message: err.message, stack: err.stack });
-});
+// server.use((err, req, res, next) => {
+//   res.status(500).json({ message: err.message, stack: err.stack });
+// });
 
 module.exports = server;
