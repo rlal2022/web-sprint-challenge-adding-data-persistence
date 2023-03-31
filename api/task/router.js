@@ -8,6 +8,13 @@ const router = express.Router();
 router.get("/", (req, res, next) => {
   Task.getTasks()
     .then((tasks) => {
+      tasks.forEach((row) => {
+        if (row.task_completed === 0) {
+          row.task_completed = false;
+        } else {
+          row.task_completed = true;
+        }
+      });
       res.status(200).json(tasks);
     })
     .catch(next);
@@ -16,6 +23,13 @@ router.get("/", (req, res, next) => {
 router.post("/", (req, res, next) => {
   Task.create(req.body)
     .then((task) => {
+      task.forEach((row) => {
+        if (row.task_completed === 0) {
+          row.task_completed = false;
+        } else {
+          row.task_completed = true;
+        }
+      });
       res.status(200).json(task);
     })
     .catch(next);

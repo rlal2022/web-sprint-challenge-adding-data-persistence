@@ -15,28 +15,15 @@ async function getTasks() {
       "p.project_name",
       "p.project_description"
     );
-
-  const arr = [];
-
-  rows.forEach((row) => {
-    if (row.task_completed === 0) {
-      arr.push({ ...row, taskcompleted: false });
-    } else {
-      arr.push({ ...row, task_completed: true });
-    }
-  });
-
-  return arr;
+  return rows;
 }
 
 async function create(task) {
-  const [id] = await db("tasks").insert(task);
-  const [newTask] = await db("tasks").where("task_id", id);
-  if (newTask.task_completed === 0) {
-    return { ...newTask, task_completed: false };
-  } else {
-    return { ...newTask, task_completed: true };
-  }
+  return db("tasks")
+    .insert(task)
+    .then((id) => {
+      return db("tasks").where("task_id", id);
+    });
 }
 
 module.exports = { getTasks, create };

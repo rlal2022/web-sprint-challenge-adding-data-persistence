@@ -27,9 +27,7 @@ exports.up = async function (knex) {
         .unsigned()
         .notNullable()
         .references("project_id")
-        .inTable("projects")
-        .onDelete("RESTRICT")
-        .onUpdate("RESTRICT");
+        .inTable("projects");
     })
     .createTable("project_resources", (table) => {
       table.increments("project_resources_id");
@@ -38,16 +36,13 @@ exports.up = async function (knex) {
         .unsigned()
         .notNullable()
         .references("project_id")
-        .inTable("projects")
-        .onDelete("RESTRICT")
-        .onUpdate("RESTRICT");
+        .inTable("projects");
+
       table
         .integer("resource_id")
         .notNullable()
         .references("resource_id")
-        .inTable("resources")
-        .onDelete("RESTRICT")
-        .onUpdate("RESTRICT");
+        .inTable("resources");
     });
 };
 
