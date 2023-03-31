@@ -30,7 +30,7 @@ router.post("/", (req, res, next) => {
           row.task_completed = true;
         }
       });
-      res.status(200).json(task);
+      res.status(200).json(task[0]);
     })
     .catch(next);
 });
