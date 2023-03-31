@@ -10,7 +10,6 @@ const router = express.Router();
 router.get("/", (req, res, next) => {
   Project.getProjects()
     .then((project) => {
-      console.log(project, "something");
       res.status(200).json(project);
     })
     .catch(next);
