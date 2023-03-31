@@ -9,9 +9,9 @@ async function getProjects() {
 
   projectRows.forEach((rows) => {
     if (rows.project_completed === 0) {
-      result.push({ ...rows, project_completed: false });
+      arr.push({ ...rows, project_completed: false });
     } else {
-      result.push({ ...rows, project_completed: true });
+      arr.push({ ...rows, project_completed: true });
     }
   });
   return arr;
@@ -19,11 +19,11 @@ async function getProjects() {
 
 async function create(project) {
   const [id] = await db("projects").insert(project);
-  const [projectRows] = await db("projects").where("project_id", id);
-  if (projectRows.project_completed === 0) {
-    return { ...rows, project_completed: false };
+  const [row] = await db("projects").where("project_id", id);
+  if (row.project_completed === 0) {
+    return { ...row, project_completed: false };
   } else {
-    return { ...rows, project_completed: true };
+    return { ...row, project_completed: true };
   }
 }
 

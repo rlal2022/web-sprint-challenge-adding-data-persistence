@@ -17,18 +17,19 @@ async function getTasks() {
     );
 
   const arr = [];
+
   rows.forEach((row) => {
     if (row.task_completed === 0) {
-      result.push({ ...row, taskcompleted: false });
+      arr.push({ ...row, taskcompleted: false });
     } else {
-      result.push({ ...row, task_completed: true });
+      arr.push({ ...row, task_completed: true });
     }
   });
   return arr;
 }
 
 async function create(task) {
-  const [id] = await db("tasks").create(task);
+  const [id] = await db("tasks").insert(task);
   const [newTask] = await db("tasks").where("task_id", id);
   if (newTask.task_completed === 0) {
     return { ...rows, taskcompleted: false };
