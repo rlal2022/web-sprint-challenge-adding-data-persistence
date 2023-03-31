@@ -33,7 +33,7 @@ async function create(task) {
   const [id] = await db("tasks").insert(task);
   const [newTask] = await db("tasks").where("task_id", id);
   if (newTask.task_completed === 0) {
-    return { ...rows, taskcompleted: false };
+    return { ...rows, task_completed: false };
   } else {
     return { ...rows, task_completed: true };
   }
