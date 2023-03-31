@@ -6,18 +6,18 @@
  */
 exports.up = async function (knex) {
   await knex.schema
-    .createTable("project", (table) => {
+    .createTable("projects", (table) => {
       table.increments("project_id");
       table.string("project_name").notNullable();
       table.string("project_description");
       table.string("project_completed").defaultTo("false");
     })
-    .createTable("resource", (table) => {
+    .createTable("resources", (table) => {
       table.increments("resource_id");
       table.string("resource_name").notNullable().unique();
       table.string("resource_description");
     })
-    .createTable("task", (table) => {
+    .createTable("tasks", (table) => {
       table.increments("task_id");
       table.string("task_description").notNullable();
       table.string("task_notes");
@@ -58,7 +58,7 @@ exports.up = async function (knex) {
 exports.down = async function (knex) {
   await knex.schema
     .dropTableIfExists("project_resources")
-    .dropTableIfExists("task")
-    .dropTableIfExists("resource")
-    .dropTableIfExists("project");
+    .dropTableIfExists("tasks")
+    .dropTableIfExists("resources")
+    .dropTableIfExists("projects");
 };

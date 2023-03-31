@@ -25,6 +25,7 @@ async function getTasks() {
       arr.push({ ...row, task_completed: true });
     }
   });
+
   return arr;
 }
 
