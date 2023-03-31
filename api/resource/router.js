@@ -23,12 +23,12 @@ router.post("/", (req, res, next) => {
     .catch(next);
 });
 
-router.use((err, req, res) => {
-  res.status(500).json({
-    customMessage: "We ran into an error!",
-    message: err.message,
-    stack: err.stack,
-  });
-});
+// router.use((err, req, res) => {
+//   res.status(500).json({
+//     customMessage: "We ran into an error!",
+//     message: err.message,
+//     stack: err.stack,
+//   });
+// });
 
 module.exports = router;

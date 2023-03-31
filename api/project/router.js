@@ -10,6 +10,7 @@ const router = express.Router();
 router.get("/", (req, res, next) => {
   Project.getProjects()
     .then((project) => {
+      console.log(project, "something");
       res.status(200).json(project);
     })
     .catch(next);
@@ -23,12 +24,12 @@ router.post("/", (req, res, next) => {
     .catch(next);
 });
 
-router.use((err, req, res) => {
-  res.status(500).json({
-    customMessage: "We ran into an error!",
-    message: err.message,
-    stack: err.stack,
-  });
-});
+// router.use((err, req, res) => {
+//   res.status(500).json({
+//     customMessage: "We ran into an error!",
+//     message: err.message,
+//     stack: err.stack,
+//   });
+// });
 
 module.exports = router;

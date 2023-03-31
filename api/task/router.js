@@ -5,7 +5,7 @@ const Task = require("./model");
 
 const router = express.Router();
 
-router.get("/task", (req, res, next) => {
+router.get("/", (req, res, next) => {
   Task.getTasks()
     .then((tasks) => {
       res.status(200).json(tasks);
@@ -13,7 +13,7 @@ router.get("/task", (req, res, next) => {
     .catch(next);
 });
 
-router.post("/task", (req, res, next) => {
+router.post("/", (req, res, next) => {
   Task.create(req.body)
     .then((task) => {
       res.status(200).json(task);
@@ -21,12 +21,12 @@ router.post("/task", (req, res, next) => {
     .catch(next);
 });
 
-router.use((err, req, res) => {
-  res.status(500).json({
-    customMessage: "We ran into an error!",
-    message: err.message,
-    stack: err.stack,
-  });
-});
+// router.use((err, req, res) => {
+//   res.status(500).json({
+//     customMessage: "We ran into an error!",
+//     message: err.message,
+//     stack: err.stack,
+//   });
+// });
 
 module.exports = router;
